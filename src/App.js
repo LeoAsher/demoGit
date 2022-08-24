@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 import TodoList from "./components/TodoList.js";
+import TodoForm from "./components/TodoForm";
 
 const todos = [
   { id: 1, name: "Uchiha Madara", isDone: false },
@@ -11,9 +12,21 @@ const todos = [
 ];
 function App() {
   const [items, setItems] = React.useState(todos);
-  const deleteItem = (it) =>
+  const addTodo = (name) => {
+    setItems((items) => {
+      const id =
+        items.length > 0
+          ? items.reduce((max, ele) => (max.id > ele.id ? max : ele)).id + 1
+          : 1;
+      const todo = { id: id, name: name, isDone: false };
+      return [todo, ...items];
+    });
+  };
+  const deleteItem = (it) => {
+    console.log(items.filter((ele) => ele.id !== it.id));
     setItems((items) => items.filter((ele) => ele.id !== it.id));
-  const onChangeBox = (it) =>
+  };
+  const completeItem = (it) =>
     setItems((items) =>
       items.map((ele) =>
         ele.id === it.id ? { ...ele, isDone: !ele.isDone } : ele
@@ -22,10 +35,12 @@ function App() {
   return (
     <>
       <div className="App">
+        <h1>Todo List</h1>
+        <TodoForm addTodo={addTodo} />
         <TodoList
           items={items}
           deleteItem={deleteItem}
-          onChangeBox={onChangeBox}
+          completeItem={completeItem}
         ></TodoList>
       </div>
     </>
