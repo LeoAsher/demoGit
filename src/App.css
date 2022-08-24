@@ -1,0 +1,37 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  width: 50%;
+  text-align: center;
+  margin: 30px auto;
+}
+
+.todo-form {
+  margin: 0.5rem 0.5rem 1rem;
+  display: flex;
+  justify-content: center;
+}
+.todo-input {
+  padding: 0.375rem;
+  width: 15rem;
+}
+
+.list-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.375rem;
+  margin: 0.5rem;
+  border: 1px solid black;
+  border-radius: 3px;
+}
+
+.delete-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.delete-btn:hover {
+  background-color: rgb(193, 193, 193);
+}
